@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+require_once './boostrap.php';
 spl_autoload_register('autoload');
 
 function autoload($class_name)
