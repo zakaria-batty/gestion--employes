@@ -1,16 +1,35 @@
 <?php
-$data = new EmployesController();
-$employes = $data->getAllEmployes();
+if (isset($_POST['find'])) :
+    $data = new EmployesController();
+    $employes = $data->findEmploye();
+else :
+    $data = new EmployesController();
+    $employes = $data->getAllEmployes();
+endif;
 ?>
 
 <div class="container">
     <div class="row my-4">
         <div class="col-md-10 mx-auto">
+            <?php include('./views/include/alerts.php'); ?>
             <div class="card">
                 <div class="card-body bg-light">
+
                     <a href="<?php echo BASE_URL; ?>add" class="btn btn-sm btn-primary mr-2 mb-2">
                         <i class="fas fa-plus"></i>
                     </a>
+                    <a href="<?php echo BASE_URL; ?>" class="btn btn-sm btn-primary mr-2 mb-2">
+                        <i class="fas fa-home"></i>
+                    </a>
+                    <a href="<?php echo BASE_URL; ?>logout" title="Déconnexion" class="btn btn-link mr-2 mb-2">
+                        <i class="fas fa-user mr-2">  <?php echo $_SESSION['username'] ?></i>
+                    </a>
+
+                    <form method="post" class="float-right mb-2 d-flex flex-row">
+                        <input type="text" name="search" placeholder="Recherche" class="form-control">
+                        <button class="btn btn-info btn-sm" name="find" type="submit"><i class="fas fa-search"></fas-search></i></button>
+                    </form>
+
                     <table class="table table-hover">
                         <thead>
                             <tr>
